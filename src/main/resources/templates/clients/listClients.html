@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Grupo 1</title>
+    </head>
+    <body>
+
+		<div>
+						
+						<a th:href="@{/}">Volver</a>
+						
+					</div>
+		
+		    <h1>Lista de Clientes</h1>
+
+		    <table>
+		        <thead>
+		            <tr>
+						<th>Id Cliente</th>
+		                <th>Nombre de usuario</th>
+		                <th>Clave</th>
+		                <th>Nombre</th>
+		                <th>Domicilio</th>
+		                <th>Correo electrónico</th>
+		                <th>Estado</th>
+		                <th>Acción</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="tmpClient : ${listC}">
+						<td th:text="${tmpClient.id_cliente}"></td>
+		                <td th:text="${tmpClient.nombre_usuario}"></td>
+		                <td th:text="${tmpClient.clave}"></td>
+		                <td th:text="${tmpClient.nombre}"></td>
+		                <td th:text="${tmpClient.domicilio}"></td>
+		                <td th:text="${tmpClient.correo_electronico}"></td>
+		                <td th:text="${tmpClient.estado}"></td>
+		                <td>
+							
+		                    <form th:action="@{/eliminar/cliente}" method="post">
+		                        <input type="hidden" name="id_cliente" th:value="${tmpClient.id_cliente}"/>
+		                        <button type="submit">Eliminar</button>
+								
+		                    </form>
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+		
+    </body>
+</html>

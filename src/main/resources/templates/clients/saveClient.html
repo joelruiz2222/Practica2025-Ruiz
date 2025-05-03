@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CLIENT</title>
+    </head>
+	<style>
+		
+			        button {
+			            margin: 5px;
+			            padding: 10px;
+			            font-size: 16px;
+			        }
+			    </style>
+	
+    <body>
+
+		
+		</head>
+		
+		<body>
+			
+			<div>
+				
+				<a th:href="@{/}">Volver</a>
+				
+			</div>
+				   
+			<h1>Management Client</h1>
+
+			<form th:action="@{/cargar/cliente}" th:object="${clienteG}" method="post">
+				
+					           <div>
+
+					               <input type="text" th:field="*{nombre_usuario}" placeholder="nombre_usuario" />
+
+					           </div>
+
+					           <div>
+
+					               <input type="password" th:field="*{clave}" placeholder="clave" />
+
+					           </div>
+
+					           <div>
+
+					               <input type="text" th:field="*{nombre}" placeholder="nombre" />
+
+					           </div>
+
+							<div>
+								
+					          <input type="text" th:field="*{domicilio}" placeholder="domicilio" />
+
+							           </div>
+									   
+									   <div>
+
+									                  <input type="email" th:field="*{correo_electronico}" placeholder="correo" />
+
+									              </div>
+												  
+												  <div>
+
+													<select>
+														
+													  <option th:value="true" th:field="*{estado}">Habilitado</option>
+													  <option th:value="false" th:field="*{estado}">Inhabilitado</option>
+													 
+													</select>
+													
+
+												             </div>
+							
+					           <button type="submit">Confirmar</button>
+					           
+					       </form>
+       
+    </body>
+</html>
+
+
+	   
+	   

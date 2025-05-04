@@ -6,26 +6,23 @@ import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.terciarioisc6030.banco.entity.Client;
-import com.terciarioisc6030.banco.service.IClientService;
-import com.terciarioisc6030.banco.service.imple.ClientService;
+import com.terciarioisc6030.banco.entity.Cliente;
+import com.terciarioisc6030.banco.service.IClienteService;
+import com.terciarioisc6030.banco.service.imple.ClienteService;
 
 @Controller
-public class ClientController {
+public class ClienteController {
 
-	List<Client> listClients = new ArrayList<>();
+	List<Cliente> listClients = new ArrayList<>();
 	
-	IClientService servClient = new ClientService();
+	IClienteService servClient = new ClienteService();
 	
 	@PostMapping("/cargar/cliente")
-	public String saveClient(@ModelAttribute("clienteG") Client cliente) {
+	public String saveClient(@ModelAttribute("clienteG") Cliente cliente) {
 		
 		Random id_random = new Random();
 		
@@ -49,10 +46,6 @@ public class ClientController {
 		return "/clients/clients";
 	}
 	
-	//@DeleteMapping
-	
-	//@PutMapping
-	
 	@GetMapping("/")
 	public String mostrarHome() {
 		
@@ -63,7 +56,7 @@ public class ClientController {
 	@GetMapping("/alta")
 	public String brindarObjeto(Model model) {
 		
-	    Client cliente = new Client();	
+	    Cliente cliente = new Cliente();	
 		
 		model.addAttribute("clienteG", cliente);
 		

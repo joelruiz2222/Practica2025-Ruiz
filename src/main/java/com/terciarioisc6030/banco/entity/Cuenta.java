@@ -2,21 +2,21 @@ package com.terciarioisc6030.banco.entity;
 
 import java.time.LocalDate;
 
-public class Account {
+public class Cuenta {
 
 	private Long id_cuenta;
 	private Long numero_cuenta;
-	private Client unCliente;
+	private Cliente unCliente;
 	private LocalDate fecha_ingreso;
 	private double saldo_actual;
 	private boolean estado;
 	private double limite_extraccion;
 	
-	public Account() {
+	public Cuenta() {
 		super();
 	}
 
-	public Account(Long id_cuenta, Long numero_cuenta, Client unCliente, LocalDate fecha_ingreso, double saldo_actual,
+	public Cuenta(Long id_cuenta, Long numero_cuenta, Cliente unCliente, LocalDate fecha_ingreso, double saldo_actual,
 			boolean estado, double limite_extraccion) {
 		super();
 		this.id_cuenta = id_cuenta;
@@ -44,11 +44,11 @@ public class Account {
 		this.numero_cuenta = numero_cuenta;
 	}
 
-	public Client getUnCliente() {
+	public Cliente getUnCliente() {
 		return unCliente;
 	}
 
-	public void setUnCliente(Client unCliente) {
+	public void setUnCliente(Cliente unCliente) {
 		this.unCliente = unCliente;
 	}
 

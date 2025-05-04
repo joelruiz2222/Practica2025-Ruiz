@@ -6,7 +6,7 @@ import com.terciarioisc6030.banco.entity.Cliente;
 
 public interface IClienteService {
 
-	public void saveClient(Cliente cliente,List<Cliente> listaC);
+	public void saveClient(Cliente cliente, List<Cliente> listaC);
 	
 	public void deleteClient(Long id_cliente, List<Cliente> listaC);
 	

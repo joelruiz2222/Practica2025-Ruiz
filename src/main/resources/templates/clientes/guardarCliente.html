@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CLIENT</title>
+        <title>Alta</title>
     </head>
 	<style>
 		
@@ -30,42 +30,48 @@
 
 			<form th:action="@{/cargar/cliente}" th:object="${clienteG}" method="post">
 				
+				               <div>
+
+							      <input type="text" th:field="*{dni}" placeholder="dni" required/>
+
+					           </div>
+				
 					           <div>
 
-					               <input type="text" th:field="*{nombre_usuario}" placeholder="nombre_usuario" />
+					               <input type="text" th:field="*{nombre_usuario}" placeholder="nombre_usuario" required/>
 
 					           </div>
 
 					           <div>
 
-					               <input type="password" th:field="*{clave}" placeholder="clave" />
+					               <input type="password" th:field="*{clave}" placeholder="clave" required/>
 
 					           </div>
 
 					           <div>
 
-					               <input type="text" th:field="*{nombre}" placeholder="nombre" />
+					               <input type="text" th:field="*{nombre}" placeholder="nombre" required/>
 
 					           </div>
 
 							<div>
 								
-					          <input type="text" th:field="*{domicilio}" placeholder="domicilio" />
+					          <input type="text" th:field="*{domicilio}" placeholder="domicilio" required/>
 
 							           </div>
 									   
 									   <div>
 
-									                  <input type="email" th:field="*{correo_electronico}" placeholder="correo" />
+									                  <input type="email" th:field="*{correo_electronico}" placeholder="correo" required/>
 
 									              </div>
 												  
 												  <div>
 
-													<select>
+													<select th:field="*{estado}">
 														
-													  <option th:value="true" th:field="*{estado}">Habilitado</option>
-													  <option th:value="false" th:field="*{estado}">Inhabilitado</option>
+													  <option th:value="true">Habilitado</option>
+													  <option th:value="false">Inhabilitado</option>
 													 
 													</select>
 													

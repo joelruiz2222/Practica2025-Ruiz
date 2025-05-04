@@ -16,13 +16,13 @@ import com.terciarioisc6030.banco.service.imple.ClienteService;
 
 @Controller
 public class ClienteController {
-
-	List<Cliente> listClients = new ArrayList<>();
+	
+    List<Cliente> listaC = new ArrayList<>();
 	
 	IClienteService servClient = new ClienteService();
 	
 	@PostMapping("/cargar/cliente")
-	public String saveClient(@ModelAttribute("clienteG") Cliente cliente) {
+	public String saveClient(Cliente cliente, Model model) {
 		
 		Random id_random = new Random();
 		
@@ -30,9 +30,11 @@ public class ClienteController {
 		
 		cliente.setId_cliente(id_R);
 		
-		servClient.saveClient(cliente, listClients);
+		servClient.saveClient(cliente,listaC);
 		
-		return "clients/saveClient";
+		model.addAttribute("clienteG", cliente);
+		
+		return "clientes/guardarCliente";
 		
 	}
 	
@@ -41,35 +43,52 @@ public class ClienteController {
 		
 		Long id_clientL = Long.parseLong(id_cliente);
 		
-		servClient.deleteClient(id_clientL, listClients);
+		servClient.deleteClient(id_clientL,listaC);
 		
-		return "/clients/clients";
+		return "clientes/home";
+		
+	}
+	
+	@GetMapping("/buscardni/cliente")
+	public String findClientByDni(@RequestParam String dni_cliente, Model model) {
+		
+    model.addAttribute("clienteBuscado", servClient.findClientByDni(dni_cliente,listaC));
+		
+	return "clientes/buscarCliente";
+	
 	}
 	
 	@GetMapping("/")
-	public String mostrarHome() {
+	public String home() {
 		
-		return "clients/clients";
+		return "clientes/home";
 	}
 	
 	
 	@GetMapping("/alta")
-	public String brindarObjeto(Model model) {
+	public String clientes(Model model) {
 		
 	    Cliente cliente = new Cliente();	
 		
 		model.addAttribute("clienteG", cliente);
 		
-		return "clients/saveClient";
+		return "clientes/guardarCliente";
 		
 	}
 	
-	@GetMapping("/lista/cliente")
-	public String listClient(Model model) {
+	@GetMapping("/lista")
+	public String listarClientes(Model model) {
 		
-		model.addAttribute("listC", listClients);
+		model.addAttribute("listC", listaC);
 		
-		return "/clients/listClients";
+		return "clientes/listaCliente";
 	}
+	
+	@GetMapping("/buscar")
+	public String buscarCliente() {
+		
+		return "clientes/buscarCliente";
+	}
+	
 	
 }

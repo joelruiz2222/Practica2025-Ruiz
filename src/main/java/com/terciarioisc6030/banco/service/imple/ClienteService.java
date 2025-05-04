@@ -1,26 +1,26 @@
 package com.terciarioisc6030.banco.service.imple;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.terciarioisc6030.banco.entity.Cliente;
 import com.terciarioisc6030.banco.service.IClienteService;
 
 public class ClienteService implements IClienteService{
-
 	
 	@Override
-	public void saveClient(Cliente cliente, List<Cliente> listaC) {
+	public void saveClient(Cliente cliente, List<Cliente> listaClientes) {
 		
-		listaC.add(cliente);
+		listaClientes.add(cliente);
 		
 	}
 
 	@Override
-	public void deleteClient(Long id_client, List<Cliente> listaC) {
+	public void deleteClient(Long id_client, List<Cliente> listaClientes) {
 
 		Cliente clienteE = new Cliente();
 		
-		for (Cliente cliente : listaC) {
+		for (Cliente cliente : listaClientes) {
 			
 			if (id_client == cliente.getId_cliente()) {
 				
@@ -35,7 +35,7 @@ public class ClienteService implements IClienteService{
 		if (clienteE != null) {
 			
 			
-			listaC.remove(clienteE);
+			listaClientes.remove(clienteE);
 			
 		}
 		
@@ -43,11 +43,11 @@ public class ClienteService implements IClienteService{
 	}
 	
 	 @Override
-	    public Cliente findClientByDni(String dni_cliente,List<Cliente> listaC) {
+	    public Cliente findClientByDni(String dni_cliente, List<Cliente> listaClientes) {
 	        
 	        Cliente clienteE = new Cliente();
 	        
-	        for (Cliente cliente : listaC) {
+	        for (Cliente cliente : listaClientes) {
 				
 	        	if (dni_cliente.equalsIgnoreCase(cliente.getDni())) {
 					
@@ -64,6 +64,17 @@ public class ClienteService implements IClienteService{
 	            return clienteE;
 	        
 	    }
+	 
+		@Override
+		public List<Cliente> getClients() {
+			
+		
+			//no se necesita
+			
+			return null;
+			
+		}	
+
 
 	@Override
 	public void editClient() {
@@ -83,13 +94,5 @@ public class ClienteService implements IClienteService{
 		return null;
 	}
 
-	@Override
-	public List<Cliente> getClients() {
-		
-		
-		//no se necesita
-		
-		return null;
-	}	
 
 }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CLIENT</title>
+        <title>Buscar</title>
     </head>
 	<style>
 		
@@ -19,19 +19,40 @@
 		</head>
 		
 		<body>
-			
-			<form>
+		
+			<div>
+									
+									<a th:href="@{/}">Volver</a>
+									
+								</div>
+				
+			<form th:action="@{/buscardni/cliente}" method="get">
 				
 				<h1>Buscar Cliente Por Dni</h1>
 				
-				
-				<input type="text">
+				<input type="text" name="dni_cliente" placeholder="Ingrese el Dni">
 				
 				<button type="submit">Confirmar</button>
 				
-			</form>
-			
-			
-       
+				</form>
+				
+				<table>
+					
+					<tr th:if="${clienteBuscado}">
+									
+						<td th:text="${clienteBuscado.id_cliente}"></td>
+				        <td th:text="${clienteBuscado.dni}"></td>
+					    <td th:text="${clienteBuscado.nombre_usuario}"></td>
+						<td th:text="${clienteBuscado.clave}"></td>
+					    <td th:text="${clienteBuscado.nombre}"></td>
+						<td th:text="${clienteBuscado.domicilio}"></td>
+					    <td th:text="${clienteBuscado.correo_electronico}"></td>
+						<td th:text="${clienteBuscado.estado}"></td>
+									
+		            </tr>
+
+				</table>
+				
     </body>
+	
 </html>

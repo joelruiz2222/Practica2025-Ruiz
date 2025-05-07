@@ -40,13 +40,20 @@
 		                <td th:text="${tmpClient.estado}"></td>
 		                <td>
 							
-		                    <form th:action="@{/eliminar/cliente}" method="post">
-		                        <input type="hidden" name="id_cliente" th:value="${tmpClient.id_cliente}"/>
-		                        <button type="submit">Eliminar</button>
-								
-		                    </form>
-		                </td>
-		            </tr>
+							<form th:action="@{/eliminar/cliente}" method="post">
+								<input type="hidden" name="id_cliente" th:value="${tmpClient.id_cliente}" />
+								<button type="submit">Eliminar</button>
+							
+							</form>
+							
+							<form th:action="@{/editar}" method="post">
+								<input type="hidden" name="id_cliente" th:value="${tmpClient.id_cliente}" />
+								<button type="submit">Editar</button>
+							
+							</form>
+							
+							</td>
+							</tr>
 		        </tbody>
 		    </table>
 		

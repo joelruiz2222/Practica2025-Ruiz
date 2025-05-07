@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Alta</title>
+    </head>
+	<style>
+		
+			        button {
+			            margin: 5px;
+			            padding: 10px;
+			            font-size: 16px;
+			        }
+			    </style>
+	
+    <body>
+
+		
+		</head>
+		
+		<body>
+			
+			<div>
+				
+				<a th:href="@{/}">Volver</a>
+				
+			</div>
+				   
+			<h1>Edit Client</h1>
+
+			<form th:action="@{/editar/cliente}" th:object="${clienteG}" method="post">
+
+				                 <input type="text" name="id_cliente" th:field="*{id_cliente}" readonly/>
+								
+				               <div>
+
+							      <input type="text" th:field="*{dni}" placeholder="dni" required/>
+
+					           </div>
+				
+					           <div>
+
+					               <input type="text" th:field="*{nombre_usuario}" placeholder="nombre_usuario" required/>
+
+					           </div>
+
+					           <div>
+
+					               <input type="text" th:field="*{clave}" placeholder="clave" required/>
+
+					           </div>
+
+					           <div>
+
+					               <input type="text" th:field="*{nombre}" placeholder="nombre" required/>
+
+					           </div>
+
+							<div>
+								
+					          <input type="text" th:field="*{domicilio}" placeholder="domicilio" required/>
+
+							           </div>
+									   
+									   <div>
+
+									                  <input type="email" th:field="*{correo_electronico}" placeholder="correo" required/>
+
+									              </div>
+												  
+												  <div>
+
+													<select th:field="*{estado}">
+														
+													  <option th:value="true">Habilitado</option>
+													  <option th:value="false">Inhabilitado</option>
+													 
+													</select>
+													
+
+												             </div>
+							
+					           <button type="submit">Confirmar</button>
+					           
+					       </form>
+       
+    </body>
+</html>

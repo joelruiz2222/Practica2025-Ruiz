@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,8 @@ import com.terciarioisc6030.banco.service.imple.ClienteService;
 @Controller
 public class ClienteController {
 	
-    List<Cliente> listaC = new ArrayList<>();
-	
-	IClienteService servClient = new ClienteService();
+	@Autowired
+	private IClienteService servClient;
 	
 	@PostMapping("/cargar/cliente")
 	public String saveClient(Cliente cliente, Model model) {
@@ -30,8 +30,8 @@ public class ClienteController {
 		
 		cliente.setId_cliente(id_R);
 		
-		servClient.saveClient(cliente,listaC);
-		
+		servClient.saveClient(cliente);
+		  
 		model.addAttribute("clienteG", cliente);
 		
 		return "clientes/guardarCliente";
@@ -39,20 +39,36 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/eliminar/cliente")
-	public String deleteClient(@RequestParam String id_cliente) {
+	public String deleteClient(@RequestParam("id_cliente") String id_cliente) {
 		
 		Long id_clientL = Long.parseLong(id_cliente);
 		
-		servClient.deleteClient(id_clientL,listaC);
+		servClient.deleteClient(id_clientL);
 		
 		return "clientes/home";
 		
 	}
 	
-	@GetMapping("/buscardni/cliente")
-	public String findClientByDni(@RequestParam String dni_cliente, Model model) {
+	@PostMapping("/editar/cliente")
+	public String editClient(Cliente cliente) {
 		
-    model.addAttribute("clienteBuscado", servClient.findClientByDni(dni_cliente,listaC));
+		servClient.editClient(cliente);
+		
+		return "redirect:/lista";
+	}
+	
+	@PostMapping("/editar")
+	public String editarCliente(@RequestParam("id_cliente") Long id_cliente, Model model) {
+		
+		model.addAttribute("clienteG", servClient.findClient(id_cliente));
+		
+		return "clientes/editarCliente";
+	}
+	
+	@GetMapping("/buscardni/cliente")
+	public String findClientByDni(@RequestParam("dni_cliente") String dni_cliente, Model model) {
+		
+    model.addAttribute("clienteBuscado", servClient.findClientByDni(dni_cliente));
 		
 	return "clientes/buscarCliente";
 	
@@ -63,7 +79,6 @@ public class ClienteController {
 		
 		return "clientes/home";
 	}
-	
 	
 	@GetMapping("/alta")
 	public String clientes(Model model) {
@@ -79,7 +94,7 @@ public class ClienteController {
 	@GetMapping("/lista")
 	public String listarClientes(Model model) {
 		
-		model.addAttribute("listC", listaC);
+		model.addAttribute("listC", servClient.getClients());
 		
 		return "clientes/listaCliente";
 	}
@@ -89,6 +104,5 @@ public class ClienteController {
 		
 		return "clientes/buscarCliente";
 	}
-	
 	
 }

@@ -74,8 +74,8 @@ public class ClienteController {
 	
 	}
 	
-	@GetMapping("/")
-	public String home() {
+	@GetMapping("/homeCliente")
+	public String homeCliente() {
 		
 		return "clientes/home";
 	}

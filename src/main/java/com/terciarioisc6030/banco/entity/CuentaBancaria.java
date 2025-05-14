@@ -1,8 +1,9 @@
 package com.terciarioisc6030.banco.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class Cuenta {
+public class CuentaBancaria {
 
 	private Long id_cuenta;
 	private Long numero_cuenta;
@@ -11,13 +12,14 @@ public class Cuenta {
 	private double saldo_actual;
 	private boolean estado;
 	private double limite_extraccion;
+	private List<Movimiento> listaMovimientos;
 	
-	public Cuenta() {
+	public CuentaBancaria() {
 		super();
 	}
 
-	public Cuenta(Long id_cuenta, Long numero_cuenta, Cliente unCliente, LocalDate fecha_ingreso, double saldo_actual,
-			boolean estado, double limite_extraccion) {
+	public CuentaBancaria(Long id_cuenta, Long numero_cuenta, Cliente unCliente, LocalDate fecha_ingreso,
+			double saldo_actual, boolean estado, double limite_extraccion, List<Movimiento> listaMovimientos) {
 		super();
 		this.id_cuenta = id_cuenta;
 		this.numero_cuenta = numero_cuenta;
@@ -26,6 +28,7 @@ public class Cuenta {
 		this.saldo_actual = saldo_actual;
 		this.estado = estado;
 		this.limite_extraccion = limite_extraccion;
+		this.listaMovimientos = listaMovimientos;
 	}
 
 	public Long getId_cuenta() {
@@ -83,5 +86,13 @@ public class Cuenta {
 	public void setLimite_extraccion(double limite_extraccion) {
 		this.limite_extraccion = limite_extraccion;
 	}
-	
+
+	public List<Movimiento> getListaMovimientos() {
+		return listaMovimientos;
+	}
+
+	public void setListaMovimientos(List<Movimiento> listaMovimientos) {
+		this.listaMovimientos = listaMovimientos;
+	}
+
 }

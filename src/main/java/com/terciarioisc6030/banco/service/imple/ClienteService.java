@@ -85,19 +85,7 @@ public class ClienteService implements IClienteService{
 			if (clienteEditado.getId_cliente() == listaClientes.get(i).getId_cliente()) {
 				
 				listaClientes.set(i, clienteEditado);
-				
-				/*
-				listaClientes.get(i).setDni(clienteEditado.getDni());
-				listaClientes.get(i).setNombre_usuario(clienteEditado.getNombre_usuario());
-				listaClientes.get(i).setClave(clienteEditado.getClave());
-				listaClientes.get(i).setNombre(clienteEditado.getNombre());
-				listaClientes.get(i).setDomicilio(clienteEditado.getDomicilio());
-				listaClientes.get(i).setCorreo_electronico(clienteEditado.getCorreo_electronico());
-				listaClientes.get(i).setEstado(clienteEditado.getEstado());			
-				*/
-				
-				//clienteNuevo.setNombre_usuario(clienteEditado.getNombre_usuario());	
-						
+                                
 				break;
 
 			}

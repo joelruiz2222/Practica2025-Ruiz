@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Alta Cuenta</title>
+    </head>
+	<style>
+		
+			        button {
+			            margin: 5px;
+			            padding: 10px;
+			            font-size: 16px;
+			        }
+			    </style>
+	
+    <body>
+
+		
+		</head>
+		
+		<body>
+			
+			<div>
+				
+				<a th:href="@{/homeCuenta}">Volver</a>
+				
+			</div>
+				   
+			<h1>Management Cuenta</h1>
+
+			<form th:action="@{/cargar/cuenta}" th:object="${cuentaG}" method="post">
+				
+				               <div>
+
+							      <input type="text" th:field="*{numero_cuenta}" placeholder="numero de cuenta" required/>
+
+					           </div>
+				
+					           <div>
+
+								<select class="form-control" id="clienteSelect" name="cliente_id">
+									
+									
+									<option>Seleccione un Cliente</option>
+									<option th:each="tmpClient : ${listaClientes}" th:value="${tmpClient.id_cliente}"
+									  th:text="${tmpClient.nombre_usuario}"></option>
+									
+									
+								</select>
+
+					           </div>
+
+					           <div>
+
+					               <input type="text" th:field="*{fecha_ingreso}" placeholder="fecha/ej: 2005-03-16" required/>
+
+							</div>
+							
+							<div>
+							
+								<input type="text" th:field="*{saldo_actual}" placeholder="saldo actual" required />
+							
+							</div>
+							
+							<div>
+							
+								<select th:field="*{estado}">
+							
+									<option th:value="true">Habilitado</option>
+									<option th:value="false">Inhabilitado</option>
+							
+								</select>
+							
+							
+							</div>
+							
+							<div>
+							
+								<input type="text" th:field="*{limite_extraccion}" placeholder="limite de extraccion" required />
+							
+							</div>
+							
+							<button type="submit">Confirmar</button>
+							
+							</form>
+							
+							</body>
+							
+							</html>

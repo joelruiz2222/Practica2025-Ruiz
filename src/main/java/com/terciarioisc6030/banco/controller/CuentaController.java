@@ -69,6 +69,8 @@ public class CuentaController {
 		
 		movimiento.setTipo_operacion(tipo_operacion);
 		
+		servCuenta.actualizarSueldo(id_cuenta, movimiento.getImporte(), tipo_operacion);
+		
 		servMovimiento.saveMovimiento(movimiento);
 		
 		return "redirect:/listaCuenta";

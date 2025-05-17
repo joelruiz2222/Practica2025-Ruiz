@@ -1,24 +1,15 @@
 package com.terciarioisc6030.banco.service.imple;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-import com.terciarioisc6030.banco.controller.ClienteController;
 import com.terciarioisc6030.banco.entity.CuentaBancaria;
 import com.terciarioisc6030.banco.service.ICuentaService;
 
 @Service
 public class CuentaService implements ICuentaService{
 
-    private final ClienteController clienteController;
-
 	private List<CuentaBancaria> listaCuentas = new ArrayList<CuentaBancaria>();
-
-    CuentaService(ClienteController clienteController) {
-        this.clienteController = clienteController;
-    }
 	
 	@Override
 	public void saveCuenta(CuentaBancaria cuenta) {
@@ -76,7 +67,7 @@ public class CuentaService implements ICuentaService{
 		
 	   for (CuentaBancaria cuentaBancaria : listaCuentas) {
 		
-		   if (id == cuentaBancaria.getId_cuenta()) {
+		   if (id.equals(cuentaBancaria.getId_cuenta()) ) {
 			
 			   cuenta = cuentaBancaria;
 			   
@@ -93,6 +84,28 @@ public class CuentaService implements ICuentaService{
 	public List<CuentaBancaria> getCuentas() {
 		
 		return listaCuentas;
+		
+	}
+
+	@Override
+	public void actualizarSueldo(Long id, double importe,String tipo_operacion) {
+		
+		CuentaBancaria cuentaB = this.findCuenta(id);
+		
+		if (tipo_operacion.equalsIgnoreCase("deposito")) {
+			
+			cuentaB.setSaldo_actual(cuentaB.getSaldo_actual() + importe);
+			
+		}else {
+			
+			if (tipo_operacion.equalsIgnoreCase("extraccion")) {
+				
+				cuentaB.setSaldo_actual(cuentaB.getSaldo_actual() - importe);
+			}
+				
+		}
+		
+		this.editCuenta(cuentaB);
 		
 	}
 

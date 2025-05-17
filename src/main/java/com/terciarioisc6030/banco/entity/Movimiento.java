@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Movimiento {
 
+	private Long id_movimiento;
+	private CuentaBancaria unaCuenta;
 	private String tipo_operacion;
 	private double importe;
 	private LocalDate fecha_movimiento;
@@ -11,9 +13,12 @@ public class Movimiento {
 	public Movimiento() {
 		super();
 	}
-
-	public Movimiento(String tipo_operacion, double importe, LocalDate fecha_movimiento) {
+	
+	public Movimiento(Long id_movimiento, CuentaBancaria unaCuenta, String tipo_operacion, double importe,
+			LocalDate fecha_movimiento) {
 		super();
+		this.id_movimiento = id_movimiento;
+		this.unaCuenta = unaCuenta;
 		this.tipo_operacion = tipo_operacion;
 		this.importe = importe;
 		this.fecha_movimiento = fecha_movimiento;
@@ -41,6 +46,22 @@ public class Movimiento {
 
 	public void setFecha_movimiento(LocalDate fecha_movimiento) {
 		this.fecha_movimiento = fecha_movimiento;
+	}
+
+	public Long getId_movimiento() {
+		return id_movimiento;
+	}
+
+	public void setId_movimiento(Long id_movimiento) {
+		this.id_movimiento = id_movimiento;
+	}
+
+	public CuentaBancaria getUnaCuenta() {
+		return unaCuenta;
+	}
+
+	public void setUnaCuenta(CuentaBancaria unaCuenta) {
+		this.unaCuenta = unaCuenta;
 	}
 	
 }

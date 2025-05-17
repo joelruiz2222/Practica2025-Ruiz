@@ -20,4 +20,23 @@ public class MovimientoService implements IMovimientoService{
 		
 	}
 
+	@Override
+	public List<Movimiento> getMovimientosByCuenta(Long id_cuenta) {
+	
+		List<Movimiento> movimientosBuscados = new ArrayList<Movimiento>();
+		
+		for (Movimiento movimiento : listaMovimientos) {
+			
+			if (id_cuenta == movimiento.getUnaCuenta().getId_cuenta()) {
+				
+				
+				movimientosBuscados.add(movimiento);
+				
+			}
+			
+		}
+		
+		return movimientosBuscados;
+	}
+
 }

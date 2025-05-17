@@ -31,28 +31,53 @@
 						<td th:text="${tmpCuenta.id_cuenta}"></td>
 						<td th:text="${tmpCuenta.numero_cuenta}"></td>
 		                <td th:text="${tmpCuenta.unCliente.nombre_usuario}"></td>
-		                <td th:text="${tmpCuenta.fecha_ingreso}"></td>
-		                <td th:text="${tmpCuenta.saldo_actual}"></td>
-		                <td th:text="${tmpCuenta.estado}"></td>
-		                <td th:text="${tmpCuenta.limite_extraccion}"></td>
-		                <td>
-							
-							<form method="post">
+						<td th:text="${tmpCuenta.fecha_ingreso}"></td>
+						<td th:text="${tmpCuenta.saldo_actual}"></td>
+						<td th:text="${tmpCuenta.estado}"></td>
+						<td th:text="${tmpCuenta.limite_extraccion}"></td>
+						<td>
+						
+							<form th:action="@{/altaMovimiento}" method="post">
+						
+								<input type="hidden" name="cuenta_id" th:value="${tmpCuenta.id_cuenta}">
+						
 								
-								<button type="submit">Eliminar</button>
-							
-							</form>
-							
-							<form method="post">
 								
-								<button type="submit">Editar</button>
-							
+								<!--/* INPUT EL CUAL SOLAMENTE MANDA LA PALABRA DEPOSITO PARA REDIRECCIONAR EN EL CONTROLLER
+								A SU DEBIDA PAGINA... */-->
+						
+								<input type="hidden" name="tipo_operacion" th:value="deposito">
+						
+								<button type="submit">Deposito</button>
+						
 							</form>
-							
-							</td>
-							</tr>
-		        </tbody>
-		    </table>
-		
-    </body>
-</html>
+						
+							<form th:action="@{/altaMovimiento}" method="post">
+						
+								<input type="hidden" name="cuenta_id" th:value="${tmpCuenta.id_cuenta}">
+						
+								<!--/*INPUT EL CUAL SOLAMENTE MANDA LA PALABRA EXTRACCION PARA REDIRECCIONAR EN EL CONTROLLER
+		                         A SU DEBIDA PAGINA... */-->
+								 
+								<input type="hidden" name="tipo_operacion" th:value="extraccion">
+								
+								<button type="submit">Extraccion</button>
+						
+							</form>
+						
+							<form th:action="@{/listaMovimiento}" method="post">
+						
+								<input type="hidden" name="cuenta_id" th:value="${tmpCuenta.id_cuenta}">
+								
+								<button type="submit">Movimientos</button>
+						
+							</form>
+						
+						</td>
+						</tr>
+						</tbody>
+						</table>
+						
+						</body>
+						
+						</html>

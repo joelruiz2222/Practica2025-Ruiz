@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Extraccion</title>
+    </head>
+	
+	<style>
+		
+			        button {
+			            margin: 5px;
+			            padding: 10px;
+			            font-size: 16px;
+			        }
+					
+			    </style>
+	
+    <body>
+
+		</head>
+		
+		<body>
+		
+			<div>
+		
+				<a th:href="@{/homeCuenta}">Volver</a>
+		
+			</div>
+		
+			<h1>Extraccion Cuenta</h1>
+		
+			<form th:action="@{/cargar/movimiento}" th:object="${movimientoG}" method="post">
+		
+				<input type="text" name="cuenta_id" th:value="${cuentaG.id_cuenta}" readonly>
+		
+				//PALABRA EXTRACCION PARA GUARDARLA EN EL ATRIBUTO
+				//TIPO DE OPERACION !!
+				<input type="hidden" name="tipo_operacion" th:value="Extraccion">
+		
+				<div>
+		
+					<input type="text" th:field="*{importe}" placeholder="importe" required />
+		
+				</div>
+		
+		
+				<div>
+		
+					<input type="text" th:field="*{fecha_movimiento}" placeholder="fecha/ej: 2005-03-16" required />
+		
+				</div>
+		
+				<button type="submit">Confirmar</button>
+		
+			</form>
+		
+		</body>
+		
+		</html>

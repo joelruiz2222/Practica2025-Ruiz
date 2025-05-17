@@ -39,11 +39,9 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/eliminar/cliente")
-	public String deleteClient(@RequestParam("id_cliente") String id_cliente) {
-		
-		Long id_clientL = Long.parseLong(id_cliente);
-		
-		servClient.deleteClient(id_clientL);
+	public String deleteClient(@RequestParam("id_cliente") Long id_cliente) {
+
+		servClient.deleteClient(id_cliente);
 		
 		return "clientes/home";
 		

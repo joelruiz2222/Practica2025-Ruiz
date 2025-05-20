@@ -109,4 +109,22 @@ public class CuentaService implements ICuentaService{
 		
 	}
 
+	@Override
+	public List<CuentaBancaria> getCuentasByCliente(Long id_cliente) {
+		
+		List<CuentaBancaria> listaCuentasBancarias = new ArrayList<CuentaBancaria>();
+		
+		for (CuentaBancaria cuentaBancaria : listaCuentas) {
+			
+			if (id_cliente == cuentaBancaria.getUnCliente().getId_cliente()) {
+				
+				listaCuentasBancarias.add(cuentaBancaria);
+				
+			}
+			
+		}
+		
+		return listaCuentasBancarias;
+	}
+
 }

@@ -104,6 +104,21 @@ public class CuentaController {
 		return null;
 	}
 	
+	@GetMapping("/buscar/cuenta")
+	public String buscar() {
+		
+		return "banco/buscarCuenta";
+		
+	}
+	
+	@PostMapping("/buscar/cuenta/cliente")
+	public String buscarCuentasPorCliente(Model model, @RequestParam ("cliente_id") Long id_cliente) {
+		
+		model.addAttribute("listaCuentasB", servCuenta.getCuentasByCliente(id_cliente));
+		
+		return "banco/buscarCuenta";
+	}
+	
 	@PostMapping("/listaMovimiento")
 	public String listaMovimientos(Model model, @RequestParam ("cuenta_id") Long id_cuenta) {
 		

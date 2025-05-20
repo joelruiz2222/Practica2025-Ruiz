@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Buscar Cuenta</title>
+    </head>
+	<style>
+		
+			        button {
+			            margin: 5px;
+			            padding: 10px;
+			            font-size: 16px;
+			        }
+			    </style>
+	
+    <body>
+
+		
+		</head>
+		
+		<body>
+		
+			<div>
+				<a th:href="@{/homeCuenta}">Volver</a>
+									
+								</div>
+				
+			<form th:action="@{/buscar/cuenta/cliente}" method="post">
+				
+				<h1>Buscar Cliente Por Dni</h1>
+				
+				<input type="text" name="cliente_id" placeholder="Ingrese el Id">
+				
+				<button type="submit">Confirmar</button>
+				
+				</form>
+				
+				<h1>Lista de Cuentas</h1>
+
+						    <table>
+						        <thead>
+						            <tr>
+										<th>Id Cuenta</th>
+										<th>Numero De Cuenta</th>
+						                <th>Nombre Del Cliente</th>
+						                <th>Fecha De Ingreso</th>
+						                <th>Saldo Actual</th>
+						                <th>Estado</th>
+						                <th>Limite De Extraccion</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <tr th:each="tmpCuenta : ${listaCuentasB}">
+										<td th:text="${tmpCuenta.id_cuenta}"></td>
+										<td th:text="${tmpCuenta.numero_cuenta}"></td>
+						                <td th:text="${tmpCuenta.unCliente.nombre_usuario}"></td>
+										<td th:text="${tmpCuenta.fecha_ingreso}"></td>
+										<td th:text="${tmpCuenta.saldo_actual}"></td>
+										<td th:text="${tmpCuenta.estado}"></td>
+										<td th:text="${tmpCuenta.limite_extraccion}"></td>
+										
+										</tr>
+										</tbody>
+										</table>
+				
+    </body>
+	
+</html>

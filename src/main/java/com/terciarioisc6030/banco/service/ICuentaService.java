@@ -18,4 +18,6 @@ public interface ICuentaService {
 	
 	public void actualizarSueldo(Long id, double importe, String tipo_operacion);
 	
+	public List<CuentaBancaria> getCuentasByCliente(Long id_cliente);
+	
 }

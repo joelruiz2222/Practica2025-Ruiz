@@ -1,14 +1,12 @@
 package com.terciarioisc6030.banco.controller;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.terciarioisc6030.banco.entity.Cliente;
 import com.terciarioisc6030.banco.entity.CuentaBancaria;
 import com.terciarioisc6030.banco.entity.Movimiento;
@@ -30,10 +28,6 @@ public class CuentaController {
 	
 	@PostMapping("/cargar/cuenta")
 	public String cargarCuenta(CuentaBancaria cuenta, @RequestParam("cliente_id") Long id_cliente){
-		
-		Random ramdon = new Random();
-		
-		cuenta.setId_cuenta(ramdon.nextLong(20));
 		
 		Cliente clienteB = servCliente.findClient(id_cliente);
 		
@@ -57,10 +51,6 @@ public class CuentaController {
 	@PostMapping("/cargar/movimiento")
 	public String cargarMovimiento(Movimiento movimiento, @RequestParam("cuenta_id") Long id_cuenta,
 			                                              @RequestParam("tipo_operacion") String tipo_operacion) {
-		Random ramdon = new Random();
-		
-		movimiento.setId_movimiento(ramdon.nextLong(20));
-		
 		CuentaBancaria cuentaB = new CuentaBancaria();
 		
 		cuentaB = servCuenta.findCuenta(id_cuenta);
@@ -77,9 +67,11 @@ public class CuentaController {
 		
 	}
 	
-	@PostMapping("/altaMovimiento")
-	public String idCuenta(Model model, @RequestParam("cuenta_id") Long id_cuenta, 
-			                            @RequestParam("tipo_operacion") String operacion) {
+	@PostMapping("/altaMovimiento/{cuenta_id}")
+	public String idCuenta(Model model,  
+			                            @RequestParam("tipo_operacion") String operacion,
+			                            @PathVariable ("cuenta_id") Long id_cuenta  
+			                            ) {
 		
 		Movimiento movimiento = new Movimiento();
 		
@@ -114,7 +106,9 @@ public class CuentaController {
 	@PostMapping("/buscar/cuenta/cliente")
 	public String buscarCuentasPorCliente(Model model, @RequestParam ("cliente_id") Long id_cliente) {
 		
-		model.addAttribute("listaCuentasB", servCuenta.getCuentasByCliente(id_cliente));
+		Cliente clienteB = servCliente.findClient(id_cliente);
+		
+		model.addAttribute("listaCuentasB", servCuenta.getCuentasByCliente(clienteB));
 		
 		return "banco/buscarCuenta";
 	}

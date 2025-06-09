@@ -1,17 +1,39 @@
 package com.terciarioisc6030.banco.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class CuentaBancaria {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_cuenta;
 	private Long numero_cuenta;
+	
+	@ManyToOne()
+	@JoinColumn(name = "unCliente")
 	private Cliente unCliente;
+	
+	@DateTimeFormat(pattern =  "yyyy-MM-dd")
 	private LocalDate fecha_ingreso;
+	
 	private double saldo_actual;
 	private boolean estado;
 	private double limite_extraccion;
+	
+	@OneToMany(mappedBy = "unaCuenta")
 	private List<Movimiento> listaMovimientos;
 	
 	public CuentaBancaria() {

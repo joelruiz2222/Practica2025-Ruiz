@@ -37,11 +37,13 @@
 						<td th:text="${tmpCuenta.limite_extraccion}"></td>
 						<td>
 						
+							<a th:href="@{/altaMovimiento/{cuenta_id}  
+						        (cuenta_id=${tmpCuenta.id_cuenta})+ '?tipo_operacion=' + ${deposito} }" 
+								  class="">Deposito</a>
+							
 							<form th:action="@{/altaMovimiento}" method="post">
 						
 								<input type="hidden" name="cuenta_id" th:value="${tmpCuenta.id_cuenta}">
-						
-								
 								
 								<!--/* INPUT EL CUAL SOLAMENTE MANDA LA PALABRA DEPOSITO PARA REDIRECCIONAR EN EL CONTROLLER
 								A SU DEBIDA PAGINA... */-->

@@ -10,7 +10,7 @@ public interface IClienteService {
 	
 	public void deleteClient(Long id_cliente);
 	
-	public void editClient(Cliente cliente);
+	public void editClient(Long id_cliente, Cliente cliente);
 	
 	public Cliente findClient(Long id_cliente);
 	

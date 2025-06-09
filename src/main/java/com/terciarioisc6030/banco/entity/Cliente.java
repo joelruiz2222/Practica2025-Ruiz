@@ -1,8 +1,22 @@
 package com.terciarioisc6030.banco.entity;
 
+import java.util.List;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Cliente {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_cliente;
+	
+	@Basic
     private String dni;
 	private String nombre_usuario;
 	private String clave;
@@ -10,6 +24,9 @@ public class Cliente {
 	private String domicilio;
 	private String correo_electronico;
 	private boolean estado;
+	
+	@OneToMany(mappedBy = "unCliente")
+	private List<CuentaBancaria> listaCuentas;
 	
 	public Cliente() {
 		super();

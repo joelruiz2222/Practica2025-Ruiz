@@ -1,9 +1,5 @@
 package com.terciarioisc6030.banco.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +19,6 @@ public class ClienteController {
 	
 	@PostMapping("/cargar/cliente")
 	public String saveClient(Cliente cliente, Model model) {
-		
-		Random id_random = new Random();
-		
-		Long id_R = id_random.nextLong(20);
-		
-		cliente.setId_cliente(id_R);
 		
 		servClient.saveClient(cliente);
 		  
@@ -50,7 +40,7 @@ public class ClienteController {
 	@PostMapping("/editar/cliente")
 	public String editClient(Cliente cliente) {
 		
-		servClient.editClient(cliente);
+		servClient.editClient(cliente.getId_cliente() ,cliente);
 		
 		return "redirect:/lista";
 	}

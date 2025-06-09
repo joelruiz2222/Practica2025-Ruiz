@@ -2,10 +2,24 @@ package com.terciarioisc6030.banco.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Movimiento {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_movimiento;
+	
+	@ManyToOne()
+	@JoinColumn(name = "unaCuenta")
 	private CuentaBancaria unaCuenta;
+	
 	private String tipo_operacion;
 	private double importe;
 	private LocalDate fecha_movimiento;

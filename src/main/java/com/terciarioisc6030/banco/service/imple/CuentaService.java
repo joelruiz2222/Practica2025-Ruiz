@@ -1,89 +1,63 @@
 package com.terciarioisc6030.banco.service.imple;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.terciarioisc6030.banco.entity.Cliente;
 import com.terciarioisc6030.banco.entity.CuentaBancaria;
+import com.terciarioisc6030.banco.repository.IClienteRepository;
+import com.terciarioisc6030.banco.repository.ICuentaBancariaRepository;
 import com.terciarioisc6030.banco.service.ICuentaService;
 
 @Service
 public class CuentaService implements ICuentaService{
 
-	private List<CuentaBancaria> listaCuentas = new ArrayList<CuentaBancaria>();
+	@Autowired
+	private ICuentaBancariaRepository repoCuenta;
+	
+	@Autowired
+	private IClienteRepository repoCliente;
 	
 	@Override
 	public void saveCuenta(CuentaBancaria cuenta) {
 	
-		listaCuentas.add(cuenta);
+		repoCuenta.save(cuenta);
 		
 	}
 
 	@Override
 	public void deleteCuenta(Long id) {
 		
-		CuentaBancaria cuenta = new CuentaBancaria();
-		
-		for (CuentaBancaria cuentaBancaria : listaCuentas) {
-			
-			if (id == cuentaBancaria.getId_cuenta()) {
-				
-				cuenta = cuentaBancaria;
-			
-				break;
-				
-			}
-			
-		}
-		
-		if (cuenta != null) {
-			
-			listaCuentas.remove(cuenta);
-			
-		}
+		repoCuenta.deleteById(id);
 		
 	}
 
 	@Override
-	public void editCuenta(CuentaBancaria cuenta) {
+	public void editCuenta(Long id_cuenta, CuentaBancaria cuenta) {
 		
-		for (int i = 0; i < listaCuentas.size(); i++) {
+		CuentaBancaria cuentaB = this.findCuenta(id_cuenta);
 		
-			if (cuenta.getId_cuenta() == listaCuentas.get(i).getId_cuenta()) {
-				
-				listaCuentas.set(i, cuenta);
-				
-				break;
-				
-			}
-			
-		}
+		cuentaB.setNumero_cuenta(cuenta.getNumero_cuenta());
+		cuentaB.setUnCliente(cuenta.getUnCliente());
+		cuentaB.setFecha_ingreso(cuenta.getFecha_ingreso());
+		cuentaB.setSaldo_actual(cuenta.getSaldo_actual());
+		cuentaB.setLimite_extraccion(cuenta.getLimite_extraccion());
+		
+		this.saveCuenta(cuentaB);
 		
 	}
 
 	@Override
 	public CuentaBancaria findCuenta(Long id) {
 		
-		CuentaBancaria cuenta = new CuentaBancaria();
-		
-	   for (CuentaBancaria cuentaBancaria : listaCuentas) {
-		
-		   if (id.equals(cuentaBancaria.getId_cuenta()) ) {
-			
-			   cuenta = cuentaBancaria;
-			   
-			   break;
-			   
-		}
-		   
-	}
-		
-		return cuenta;
+		return repoCuenta.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<CuentaBancaria> getCuentas() {
 		
-		return listaCuentas;
+		return repoCuenta.findAll();
 		
 	}
 
@@ -101,30 +75,23 @@ public class CuentaService implements ICuentaService{
 			if (tipo_operacion.equalsIgnoreCase("extraccion")) {
 				
 				cuentaB.setSaldo_actual(cuentaB.getSaldo_actual() - importe);
+				
 			}
 				
 		}
 		
-		this.editCuenta(cuentaB);
+		this.saveCuenta(cuentaB);
 		
 	}
 
 	@Override
-	public List<CuentaBancaria> getCuentasByCliente(Long id_cliente) {
+	public List<CuentaBancaria> getCuentasByCliente(Cliente cliente) {
 		
-		List<CuentaBancaria> listaCuentasBancarias = new ArrayList<CuentaBancaria>();
+		return repoCuenta.findByunCliente(cliente);
 		
-		for (CuentaBancaria cuentaBancaria : listaCuentas) {
-			
-			if (id_cliente == cuentaBancaria.getUnCliente().getId_cliente()) {
-				
-				listaCuentasBancarias.add(cuentaBancaria);
-				
-			}
-			
-		}
 		
-		return listaCuentasBancarias;
 	}
+
+
 
 }
